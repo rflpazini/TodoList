@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-Br" ng-app="todoList">
+
+<head>
+    <meta author="Rafael Pazini">
+    <meta charset="UTF-8">
+    <title>Todo List Angular</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/evolua.css">
+    <link rel="stylesheet" href="assets/css/custom.css">
+    <link rel="stylesheet" href="assets/css/material.css">
+    <script src="assets/js/angular.min.js"></script>
+</head>
+
+<body>
+    <div class="bg-header"></div>
+    <div class="container">
+        <button class="btn-floating btn-large waves-effect waves-light red pull-right btn-action-header" data-toggle="modal" data-target="#myModal"><i class="mdi-content-add"></i></button>
+        <section id="first-section">
+            <div class="col-md-8 col-md-offset-2">
+                <article ng-controller="TodoListController as todoList" class="card">
+                    <h2>Lista de tarefas</h2>
+                    <span>Restam <b>{{todoList.reamaining()}}</b> de <b>{{todoList.todos.length}}</b> tarefas</span> [
+                    <a href="" ng-click="todoList.archive()">arquivar</a>]
+                    <ul class="unstyled">
+                        <li ng-repeat="todo in todoList.todos" class="checkbox">
+                            <input type="checkbox" ng-model="todo.done">
+                            <label class="done-{{todo.done}}">{{todo.text}}</label>
+                        </li>
+                    </ul>
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form ng-submit="todoList.addTodo()">
+                                        <input class="form-control" type="text" ng-model="todoList.todoText" placeholder="add new todo here">
+                                        <div class="modal-footer">
+                                            <button class="btn btn-primary waves-effect waves-light" type="submit">Adicionar tarefa</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </div>
+
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="assets/js/todo.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/js/materialize.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/evolua.js"></script>
+</body>
+</html>
